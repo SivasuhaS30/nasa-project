@@ -1,0 +1,238 @@
+/* ================= ROOT / GLOBAL ================= */
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: white;
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* ================= ROOT LAYOUT ================= */
+
+#root {
+  display: flex;
+  min-height: 100vh; 
+  /* 🔧 CHANGED:
+     was height: 100vh
+     min-height allows sidebar + content to scroll properly */
+  position: relative;
+}
+
+/* ================= IMAGE CONTAINER ================= */
+
+.Imgcontainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.bgImg {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  object-fit: cover;
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+footer h2 {
+  font-size: 2rem;
+}
+
+footer h1 {
+  font-weight: 200;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+footer button {
+  font-size: 1.5rem;
+  border: none;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+}
+
+footer button i:hover {
+  opacity: 0.8;
+}
+
+/* ================= FOOTER GRADIENT ================= */
+
+.BgGradient {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    to top,
+    #030615,
+    rgba(255, 255, 255, 0)
+  );
+}
+
+/* ================= SIDEBAR (MOBILE DEFAULT) ================= */
+
+.sidebar {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+  /* 🔧 ADDED z-index
+     ensures sidebar stays above main image */
+}
+
+.sidebar button {
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.sidebar button:hover {
+  opacity: 0.7;
+}
+
+/* ================= SIDEBAR OVERLAY ================= */
+
+.bgOverlay {
+  position: absolute;
+  inset: 0;
+  background-color: #030615;
+  opacity: 0.6;
+  /* 🔧 CHANGED opacity from 0.4 → 0.6
+     matches YouTuber + improves readability */
+}
+
+/* ================= SIDEBAR CONTENT ================= */
+
+.sidebarContent {
+  position: relative;
+  z-index: 15;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  height: 100%;
+  overflow-y: scroll;
+
+  width: 80%;          
+  max-width: 800px;   
+  /* 🔧 CHANGED:
+     width 90% → 80%
+     added max-width to prevent oversized sidebar */
+
+  background-color: #030615;
+  margin-left: auto;
+}
+
+.sidebarContent div {
+  flex: 1;
+}
+
+.sidebarContent button {
+  background-color: transparent;
+  color: white;
+  border: none;
+  outline: none;
+  margin-right: auto;
+}
+
+/* ================= LOADING STATE ================= */
+
+.loadingState {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+.loadingState i {
+  font-size: 4rem;
+  opacity: 0.7;
+  animation: spin 1s linear infinite;
+}
+
+/* ================= ANIMATION ================= */
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ================= DESKTOP LAYOUT ================= */
+
+@media (min-width: 640px) {
+
+  .sidebar {
+    position: relative;
+    inset: unset;
+    min-width: 30%;
+    max-height: 100vh;
+    box-shadow: 0 0 40px 1px #030615;
+    /* 🔧 ADDED max-height + stronger shadow */
+  }
+
+  .sidebarContent {
+    width: 100%;
+    margin: unset;
+    /* 🔧 FIX:
+       sidebar becomes a normal column on desktop */
+  }
+
+  .bgOverlay {
+    right: 0;
+    left: unset;
+    width: 100vw;
+    /* 🔧 REQUIRED:
+       overlay should not block sidebar on desktop */
+  }
+}
+
+.sidebarDescription{
+  font-weight: 350;
+  font-size: 1.2rem;
+}
+
+.sidebarText h2{
+  font-size: 1.5rem;
+  font-weight: 450;
+}
+
+.sidebarText p{
+
+  font-weight: 250;
+}
+
+.sidebarText{
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
