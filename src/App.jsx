@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 
 
 function App() {
-  // console.log(apiKey);
+  
 
   let [data,setData] = useState(null);
   let [loading,setLoading] = useState(false);
@@ -38,7 +38,7 @@ function App() {
         let apiData = await res.json();
         localStorage.setItem(localKey,JSON.stringify(apiData));
         console.log('Got data from the API key');
-        console.log(apiData);
+      
         setData(apiData);
         setLoading(true);
       }
